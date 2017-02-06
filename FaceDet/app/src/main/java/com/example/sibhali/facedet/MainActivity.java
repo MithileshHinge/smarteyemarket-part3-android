@@ -171,6 +171,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void open_livefeed(View view) {
+        servername = jIP.getText().toString();
+        SharedPreferences sp = getSharedPreferences("myPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("Pref_IP", servername);
+        editor.commit();
         Intent intent = new Intent(this, DisplayImageActivity.class);
         startActivity(intent);
     }
