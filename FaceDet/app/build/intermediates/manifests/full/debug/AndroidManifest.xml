@@ -28,6 +28,7 @@
         <service android:name="com.example.sibhali.facedet.NotifyService" />
 
         <activity android:name="com.example.sibhali.facedet.DisplayImageActivity" />
+        <activity android:name="com.example.sibhali.facedet.FrameActivity" />
     </application>
 
 </manifest>

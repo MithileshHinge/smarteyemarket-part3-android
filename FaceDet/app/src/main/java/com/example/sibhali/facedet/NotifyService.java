@@ -105,6 +105,10 @@ public class NotifyService extends Service {
                         InputStream in = client.getInputStream();
                         OutputStream out = client.getOutputStream();
                         int p = in.read();
+                        if(p==3)
+                        {
+                            notifBuilder.setContentTitle("Alert level1.");
+                        }
                         System.out.println("NOTIF RECIEVED: "+String.valueOf(p));
                         out.write(1);
                         out.flush();
@@ -136,6 +140,8 @@ public class NotifyService extends Service {
                         }
                         DataInputStream din = new DataInputStream(in);
                         MY_NOTIFICATION_ID = din.readInt();
+                        out.write(9);
+                        out.flush();
                         client.close();
 
                         if (p == BYTE_FACEFOUND_VDOGENERATING | p == BYTE_ALERT1) {
@@ -145,11 +151,21 @@ public class NotifyService extends Service {
                             InputStream inNotifVdo = clientVdo.getInputStream();
                             OutputStream outNotifVdo = clientVdo.getOutputStream();
                             int p2 = inNotifVdo.read();
+                            if(p2 == 2)
+                            {
+                              notifVdoBuilder.setContentTitle("Face Found.Video generated");
+                            }
+                            if(p2 == 4)
+                            {
+                                notifVdoBuilder.setContentTitle("Suspicious activity.Video generated");
+                            }
                             System.out.print("NOTIF RECIEVED: " + String.valueOf(p2));
                             outNotifVdo.write(1);
                             outNotifVdo.flush();
                             DataInputStream dInNotifVdo = new DataInputStream(inNotifVdo);
                             MY_VIDEO_NOTIFICATION_ID = dInNotifVdo.readInt();
+                            outNotifVdo.write(9);
+                            outNotifVdo.flush();
                             clientVdo.close();
 
                             System.out.println("VIDEO NOTIF ID RECEIVED: " + MY_VIDEO_NOTIFICATION_ID);
@@ -162,7 +178,7 @@ public class NotifyService extends Service {
 
                             System.out.println("GIVING NOTIFICATION NOWW!!.....................................................");
 
-                            if (p2 == 2){
+                            if (p2 == BYTE_FACEFOUND_VDOGENERATED || p2 ==BYTE_ALERT2 || p2 ==5 ){
                                 notificationManager.notify(MY_VIDEO_NOTIFICATION_ID, notifVdoBuilder.build());
                                 System.out.println("NOTIF 2nd GIVEN");
                             }

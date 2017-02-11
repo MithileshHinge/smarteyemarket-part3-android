@@ -20,7 +20,7 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notif"
+        android:textOff="Notification"
         android:id="@+id/xB"
         android:layout_below="@+id/xIP"
         android:layout_alignParentLeft="true"
