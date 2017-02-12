@@ -4,31 +4,31 @@
     api-level="22"
     density="xhdpi"
     format="7"
-    timestamp="184168096769503" >
+    timestamp="4721166345498" >
 
     <task
         name="javac"
-        duration="452" />
+        duration="444" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="95" />
+        duration="92" />
     <task
         name="verifier"
-        duration="7" />
+        duration="6" />
 
     <artifact
         location="F:\GitHub\SmartEye\SmartEye_market\Part3\android\smarteyemarket-part3-android\FaceDet\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
         type="DEX" />
 
-    <build timestamp="183163820660383" >
+    <build timestamp="3806825428573" >
         <artifact
             location="F:\GitHub\SmartEye\SmartEye_market\Part3\android\smarteyemarket-part3-android\FaceDet\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="184168096769503" >
+    <build timestamp="4721166345498" >
         <artifact
             location="F:\GitHub\SmartEye\SmartEye_market\Part3\android\smarteyemarket-part3-android\FaceDet\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
             type="DEX" />

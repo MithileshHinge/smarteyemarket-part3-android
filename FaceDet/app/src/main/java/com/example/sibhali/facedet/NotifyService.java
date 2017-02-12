@@ -105,91 +105,78 @@ public class NotifyService extends Service {
                         InputStream in = client.getInputStream();
                         OutputStream out = client.getOutputStream();
                         int p = in.read();
-                        if(p==3)
+                        out.write(1);
+                        out.flush();
+                        System.out.println("NOTIF  RECIEVED: "+String.valueOf(p));
+
+                        if(p==BYTE_ALERT1)
                         {
                             notifBuilder.setContentTitle("Alert level1.");
                         }
-                        System.out.println("NOTIF 1 RECIEVED: "+String.valueOf(p));
-                        out.write(1);
-                        out.flush();
+                        if(p == BYTE_FACEFOUND_VDOGENERATED)
+                        {
+                            notifVdoBuilder.setContentTitle("Face Found.Video generated");
+                        }
+                        if(p == BYTE_ALERT2)
+                        {
+                            notifVdoBuilder.setContentTitle("Suspicious activity.Video generated");
+                        }
+                        if(p==BYTE_FACEFOUND_VDOGENERATING || p== BYTE_ALERT1) {
+                            Socket socketFrame = new Socket(servername, 6669);
+                            System.out.println("............FRAME SOCKET........");
+                            InputStream inFrame = socketFrame.getInputStream();
+                            final Bitmap notifFrame = BitmapFactory.decodeStream(new FlushedInputStream(inFrame));
+                            socketFrame.close();
 
-                        Socket socketFrame = new Socket(servername, 6669);
-                        InputStream inFrame = socketFrame.getInputStream();
-                        final Bitmap notifFrame = BitmapFactory.decodeStream(new FlushedInputStream(inFrame));
-                        socketFrame.close();
+                            String imageName = getCurrentTimeStamp();
+                            saveImage(context, notifFrame, imageName);
 
-                        String imageName = getCurrentTimeStamp();
-                        saveImage(context, notifFrame, imageName);
+                            firstNotifIntent.putExtra("image_name", imageName);
+                            firstStackBuilder.addNextIntent(firstNotifIntent);
 
-                        firstNotifIntent.putExtra("image_name", imageName);
-                        firstStackBuilder.addNextIntent(firstNotifIntent);
+                            PendingIntent firstPendingIntent = firstStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                            notifBuilder.setContentIntent(firstPendingIntent);
 
-                        PendingIntent firstPendingIntent = firstStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notifBuilder.setContentIntent(firstPendingIntent);
+                            NotificationCompat.BigPictureStyle bps = new NotificationCompat.BigPictureStyle().bigPicture(notifFrame);
+                            notifBuilder.setStyle(bps);
 
-                        NotificationCompat.BigPictureStyle bps = new NotificationCompat.BigPictureStyle().bigPicture(notifFrame);
-                        notifBuilder.setStyle(bps);
 
-                        if (FrameActivity.jIVFrame != null){
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    FrameActivity.jIVFrame.setImageBitmap(notifFrame);
-                                }
-                            });
+                            if (FrameActivity.jIVFrame != null) {
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        FrameActivity.jIVFrame.setImageBitmap(notifFrame);
+                                    }
+                                });
+                            }
                         }
                         DataInputStream din = new DataInputStream(in);
                         MY_NOTIFICATION_ID = din.readInt();
                         out.write(9);
                         out.flush();
-                        in.close();
                         client.close();
 
-                        if (p == BYTE_FACEFOUND_VDOGENERATING | p == BYTE_ALERT1) {
+                        if(p == BYTE_FACEFOUND_VDOGENERATING || p == BYTE_ALERT1)
+                        {
                             notificationManager.notify(MY_NOTIFICATION_ID, notifBuilder.build());
+                        }
 
-                            Socket clientVdo = new Socket(servername, 6667);
-                            InputStream inNotifVdo = clientVdo.getInputStream();
-                            OutputStream outNotifVdo = clientVdo.getOutputStream();
-                            int p2 = inNotifVdo.read();
-                            System.out.println("NOTIF 2  RECIEVED: " + String.valueOf(p2));
-                            if(p2 == 2)
-                            {
-                              notifVdoBuilder.setContentTitle("Face Found.Video generated");
-                            }
-                            if(p2 == 4)
-                            {
-                                notifVdoBuilder.setContentTitle("Suspicious activity.Video generated");
-                            }
+                        if (p == BYTE_FACEFOUND_VDOGENERATED || p == BYTE_ALERT2 || p == 5) {
 
-                            outNotifVdo.write(1);
-                            outNotifVdo.flush();
-                            DataInputStream dInNotifVdo = new DataInputStream(inNotifVdo);
-                            MY_VIDEO_NOTIFICATION_ID = dInNotifVdo.readInt();
-                            outNotifVdo.write(9);
-                            outNotifVdo.flush();
-                            inNotifVdo.close();
-                            clientVdo.close();
-
-                            System.out.println("VIDEO NOTIF ID RECEIVED: " + MY_VIDEO_NOTIFICATION_ID);
-
-                            secondNotifIntent.putExtra("video_notif_id", MY_VIDEO_NOTIFICATION_ID);
+                            secondNotifIntent.putExtra("video_notif_id", MY_NOTIFICATION_ID);
                             secondStackBuilder.addNextIntent(secondNotifIntent);
 
                             PendingIntent secondPendingIntent = secondStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
                             notifVdoBuilder.setContentIntent(secondPendingIntent);
 
-                            System.out.println("GIVING NOTIFICATION NOWW!!.....................................................");
+                            notificationManager.notify(MY_NOTIFICATION_ID, notifVdoBuilder.build());
+                            System.out.println("NOTIF 2nd GIVEN");
 
-                            if (p2 == BYTE_FACEFOUND_VDOGENERATED || p2 ==BYTE_ALERT2 || p2 ==5 ){
-                                notificationManager.notify(MY_VIDEO_NOTIFICATION_ID, notifVdoBuilder.build());
-                                System.out.println("NOTIF 2nd GIVEN");
-                            }
                         }
 
                     } catch (IOException e) {
                         e.printStackTrace();
-                        System.out.println("VIDEO CONNECTION PROBLEM");
+
                     }
                 }
             }
