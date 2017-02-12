@@ -109,7 +109,7 @@ public class NotifyService extends Service {
                         {
                             notifBuilder.setContentTitle("Alert level1.");
                         }
-                        System.out.println("NOTIF RECIEVED: "+String.valueOf(p));
+                        System.out.println("NOTIF 1 RECIEVED: "+String.valueOf(p));
                         out.write(1);
                         out.flush();
 
@@ -142,6 +142,7 @@ public class NotifyService extends Service {
                         MY_NOTIFICATION_ID = din.readInt();
                         out.write(9);
                         out.flush();
+                        in.close();
                         client.close();
 
                         if (p == BYTE_FACEFOUND_VDOGENERATING | p == BYTE_ALERT1) {
@@ -151,6 +152,7 @@ public class NotifyService extends Service {
                             InputStream inNotifVdo = clientVdo.getInputStream();
                             OutputStream outNotifVdo = clientVdo.getOutputStream();
                             int p2 = inNotifVdo.read();
+                            System.out.println("NOTIF 2  RECIEVED: " + String.valueOf(p2));
                             if(p2 == 2)
                             {
                               notifVdoBuilder.setContentTitle("Face Found.Video generated");
@@ -159,13 +161,14 @@ public class NotifyService extends Service {
                             {
                                 notifVdoBuilder.setContentTitle("Suspicious activity.Video generated");
                             }
-                            System.out.print("NOTIF RECIEVED: " + String.valueOf(p2));
+
                             outNotifVdo.write(1);
                             outNotifVdo.flush();
                             DataInputStream dInNotifVdo = new DataInputStream(inNotifVdo);
                             MY_VIDEO_NOTIFICATION_ID = dInNotifVdo.readInt();
                             outNotifVdo.write(9);
                             outNotifVdo.flush();
+                            inNotifVdo.close();
                             clientVdo.close();
 
                             System.out.println("VIDEO NOTIF ID RECEIVED: " + MY_VIDEO_NOTIFICATION_ID);
@@ -186,6 +189,7 @@ public class NotifyService extends Service {
 
                     } catch (IOException e) {
                         e.printStackTrace();
+                        System.out.println("VIDEO CONNECTION PROBLEM");
                     }
                 }
             }
