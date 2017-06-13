@@ -1,6 +1,10 @@
 [
     {
-        "merged": "F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
-        "source": "F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.0\\res\\color-v23\\abc_color_highlight_material.xml"
+        "merged": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
+        "source": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.0.0\\res\\color-v23\\abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/color-v23/abc_color_highlight_material.xml"
     }
 ]

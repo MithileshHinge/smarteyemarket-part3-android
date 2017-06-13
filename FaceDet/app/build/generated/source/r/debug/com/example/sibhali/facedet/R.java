@@ -1566,15 +1566,17 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f02003b;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f02003c;
         public static final int abc_textfield_search_material=0x7f02003d;
-        public static final int ic_file_download_24dp=0x7f02003e;
-        public static final int ic_notif=0x7f02003f;
-        public static final int ic_schedule_24dp=0x7f020040;
-        public static final int ic_video=0x7f020041;
-        public static final int ic_warn=0x7f020042;
-        public static final int notification_template_icon_bg=0x7f020043;
+        public static final int audio_button=0x7f02003e;
+        public static final int ic_file_download_24dp=0x7f02003f;
+        public static final int ic_notif=0x7f020040;
+        public static final int ic_schedule_24dp=0x7f020041;
+        public static final int ic_video=0x7f020042;
+        public static final int ic_warn=0x7f020043;
+        public static final int mic_off=0x7f020044;
+        public static final int mic_on=0x7f020045;
+        public static final int notification_template_icon_bg=0x7f020046;
     }
     public static final class id {
-        public static final int Exit_button=0x7f0c004e;
         public static final int action0=0x7f0c0055;
         public static final int action_bar=0x7f0c003e;
         public static final int action_bar_activity_content=0x7f0c0000;
@@ -1662,6 +1664,7 @@ containing a value of this type.
         public static final int time=0x7f0c005b;
         public static final int title=0x7f0c002a;
         public static final int title_template=0x7f0c002d;
+        public static final int toggleButton=0x7f0c004e;
         public static final int topPanel=0x7f0c002c;
         public static final int up=0x7f0c0008;
         public static final int useLogo=0x7f0c0012;

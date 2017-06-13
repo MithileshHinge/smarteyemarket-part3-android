@@ -17,6 +17,7 @@ public class Client extends Thread {
     private int port = 6666;
     private InputStream in;
     private OutputStream out;
+    public boolean running = true;
 
     Client() {
 
@@ -25,7 +26,7 @@ public class Client extends Thread {
     public void run() {
         serverName = MainActivity.jIP.getText().toString();
         try {
-            while (true) {
+            while (running) {
                 socket = new Socket(serverName, port);
                 in = socket.getInputStream();
                 out = socket.getOutputStream();

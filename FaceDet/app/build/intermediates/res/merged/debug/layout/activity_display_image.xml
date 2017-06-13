@@ -17,12 +17,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RETURN"
-        android:id="@+id/Exit_button"
+        android:id="@+id/toggleButton"
+        android:button="@drawable/audio_button"
+        android:background="@null"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

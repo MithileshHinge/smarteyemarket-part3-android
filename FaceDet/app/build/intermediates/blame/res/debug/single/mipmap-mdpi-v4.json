@@ -1,6 +1,10 @@
 [
     {
-        "merged": "F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
-        "source": "F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
+        "source": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
+        "source": "/Users/mithileshhinge/Documents/Github/SmartEyeMarket/Part3/smarteyemarket-part3-android/FaceDet/F:\\GitHub\\SmartEye\\SmartEye_market\\Part3\\android\\smarteyemarket-part3-android\\FaceDet\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     }
 ]
